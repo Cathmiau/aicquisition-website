@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+    section {
+        display: none;
+    }
+    section.active {
+        display: block;
+    }
+</style>
     <meta charset="UTF-8">
     <title>AIcquisition</title>
 </head>
@@ -14,7 +22,7 @@
         </ul>
     </nav>
 
-        <section id="home">
+        <section id="home" class="active">
             <h1>Your Legacy Deserves the Right Successor</h1>
             <p>Modernizing established home services businesses and using smart technology to amplify your team's expertise</p>
             <a class="btn" href="#mymission">Learn More</a>
@@ -74,28 +82,32 @@
         This Privacy Policy may be updated occasionally. Any changes will be posted on this page.
     </p></section>
 <script>
-// Smooth scroll para enlaces internos
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const sectionID = this.getAttribute('href');
+// Ocultar todas las secciones y mostrar solo la seleccionada
+function showSection(sectionID) {
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.querySelector(sectionID).classList.add("active");
+}
 
-        // Si el link NO es un hash vacío
-        if (sectionID !== "#") {
+// Listener para links del menú
+document.querySelectorAll('nav a, footer a[href^="#"]').forEach(link => {
+    link.addEventListener("click", function(e) {
+        const sectionID = this.getAttribute("href");
+
+        if (sectionID.startsWith("#")) {
             e.preventDefault();
-            document.querySelector(sectionID).scrollIntoView({
-                behavior: 'smooth'
-            });
+            showSection(sectionID);
         }
     });
 });
 
-// LinkedIn: asegurar nueva pestaña
+// LinkedIn sigue abriendo en nueva pestaña
 const linkedinLink = document.querySelector('a[href*="linkedin.com"]');
 if (linkedinLink) {
-    linkedinLink.setAttribute('target', '_blank');
-    linkedinLink.setAttribute('rel', 'noopener noreferrer');
+    linkedinLink.setAttribute("target", "_blank");
+    linkedinLink.setAttribute("rel", "noopener noreferrer");
 }
 </script>
+
 
 </body>
 </html>
