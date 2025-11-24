@@ -195,7 +195,7 @@
         </section>
         <section id="mymission">
             <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139884283?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="video 001"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-            <a class="btn" href="#contact">Curious about working together? Let's talk!</a>
+            <a class="btn" data-target="#contact">Curious about working together? Let's talk!</a>
         </section>
         <section id="contact"><form action="https://formsubmit.co/cathgairard@gmail.com" method="POST">
     <label>Name:</label>
@@ -255,16 +255,15 @@ function showSection(sectionID) {
 }
 
 // Listener para links del menú
-document.querySelectorAll('nav a, footer a[href^="#"]').forEach(link => {
+document.querySelectorAll('a[data-target]').forEach(link => {
     link.addEventListener("click", function(e) {
-        const sectionID = this.getAttribute("href");
-
-        if (sectionID.startsWith("#")) {
-            e.preventDefault();
-            showSection(sectionID);
-        }
+        e.preventDefault();
+        const sectionID = this.getAttribute("data-target");
+        showSection(sectionID);
+        window.scrollTo(0,0);
     });
 });
+
 
 // LinkedIn sigue abriendo en nueva pestaña
 const linkedinLink = document.querySelector('a[href*="linkedin.com"]');
