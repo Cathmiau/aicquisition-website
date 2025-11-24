@@ -73,6 +73,29 @@
     <p>
         This Privacy Policy may be updated occasionally. Any changes will be posted on this page.
     </p></section>
+<script>
+// Smooth scroll para enlaces internos
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const sectionID = this.getAttribute('href');
+
+        // Si el link NO es un hash vacío
+        if (sectionID !== "#") {
+            e.preventDefault();
+            document.querySelector(sectionID).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// LinkedIn: asegurar nueva pestaña
+const linkedinLink = document.querySelector('a[href*="linkedin.com"]');
+if (linkedinLink) {
+    linkedinLink.setAttribute('target', '_blank');
+    linkedinLink.setAttribute('rel', 'noopener noreferrer');
+}
+</script>
 
 </body>
 </html>
