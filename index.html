@@ -11,6 +11,172 @@
 </style>
     <meta charset="UTF-8">
     <title>AIcquisition</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    body {
+        background: #f8f5f2;
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        color: #000000;
+        text-align: center;
+    }
+
+    header img {
+        display: block;
+        margin: 20px auto;
+    }
+
+    /* NAV */
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 0;
+        border: none;
+    }
+    nav li {
+        padding: 10px 25px;
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        color: #573b2f;
+        cursor: pointer;
+        border-right: 2px solid #000;
+    }
+    nav li:last-child {
+        border-right: none;
+    }
+    nav a {
+        text-decoration: none;
+        color: #573b2f;
+        transition: 0.3s;
+    }
+    nav a:hover {
+        background-color: #573b2f;
+        color: #f8f5f2;
+        padding: 10px 20px;
+        border-radius: 4px;
+    }
+    nav a:active {
+        transform: scale(0.96);
+    }
+
+    /* SLOGAN */
+    #home h1 {
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        color: #000000;
+    }
+    #home p {
+        font-family: "Libre Baskerville", serif;
+        font-size: 20px;
+        margin-bottom: 40px;
+        color: #000000;
+    }
+
+    /* BUTTONS */
+    .btn {
+        display: inline-block;
+        padding: 14px 28px;
+        background: #573b2f;
+        color: #f8f5f2;
+        font-family: "Tenor Sans", sans-serif;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+    .btn:hover {
+        background: #000;
+        color: #f8f5f2;
+        transform: translateY(-2px);
+    }
+    .btn:active {
+        transform: scale(0.96);
+    }
+
+    /* VIDEO BLOCK */
+    #mymission iframe {
+        border-radius: 8px;
+    }
+
+    /* CONTACT FORM */
+    #contact form {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        text-align: left;
+        background: #ffffffdd;
+        padding: 30px;
+        border-radius: 10px;
+        border: 1px solid #c0c0c0;
+    }
+    #contact label {
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+    }
+    #contact input, #contact textarea {
+        padding: 12px;
+        border: 1px solid #c0c0c0;
+        border-radius: 6px;
+        font-size: 16px;
+        font-family: Inter;
+    }
+    #contact button {
+        padding: 12px;
+        background: #573b2f;
+        border: none;
+        color: #f8f5f2;
+        font-family: Tenor Sans;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: 0.3s;
+    }
+    #contact button:hover {
+        background: #000;
+    }
+
+    /* PRIVACY SECTION */
+    #privacy {
+        max-width: 700px;
+        margin: 40px auto;
+        text-align: left;
+        padding: 20px;
+    }
+    #privacy h2 {
+        font-family: Tenor Sans;
+    }
+    #privacy h3 {
+        font-family: Tenor Sans;
+    }
+
+    /* FOOTER */
+    footer {
+        margin-top: 40px;
+        padding: 20px;
+        font-family: Inter;
+    }
+    footer a {
+        color: #573b2f;
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+
 </head>
 <body>
     <header><img src="logodefinitivo.png" alt="Logo AIcquisition" width="200" height="200"></header>
