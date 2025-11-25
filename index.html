@@ -2,24 +2,22 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>AIcquisition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>AIcquisition</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 
-        /* ESTRUCTURA GENERAL (Para el Footer pegado al fondo - Punto 3) */
+        /* --- ESTILOS GENERALES (BASE) --- */
         body {
             background: #f8f5f2;
             margin: 0;
             font-family: 'Inter', sans-serif;
             color: #000000;
             text-align: center;
-            /* Flexbox vertical para mantener el footer abajo */
             display: flex;
             flex-direction: column;
             min-height: 100vh; 
         }
 
-        /* Contenedor principal para empujar el footer */
         main {
             flex: 1;
             width: 100%;
@@ -29,23 +27,30 @@
             box-sizing: border-box;
         }
 
-        header img {
-            display: block;
-            margin: 20px auto;
-        }
-
-        /* SECCIONES (Lógica de navegación) */
-        section {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        section.active {
-            display: block;
+        /* HEADER & LOGO */
+        header {
+            padding: 20px;
+            position: relative; /* Para posicionar el menú */
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        header img {
+            display: block;
+            margin: 0 auto; /* Centrado en desktop */
+            width: 200px;
+            height: auto;
+        }
+
+        /* BOTÓN HAMBURGUESA (Oculto en PC) */
+        .hamburger {
+            display: none; 
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #573b2f;
+            position: absolute;
+            top: 25px;
+            right: 20px;
         }
 
         /* NAV */
@@ -62,6 +67,7 @@
             display: flex;
             gap: 0;
             border: none;
+            margin: 0;
         }
         nav li {
             padding: 10px 25px;
@@ -79,7 +85,7 @@
             text-decoration: none;
             color: #573b2f;
             transition: 0.3s;
-            display: block; /* Mejora el click */
+            display: block;
         }
         nav a:hover {
             background-color: #573b2f;
@@ -88,7 +94,21 @@
             border-radius: 4px;
         }
 
-        /* HOME STYLES (Punto 4) */
+        /* SECCIONES */
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+            padding-bottom: 40px;
+        }
+        section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* HOME ELEMENTS */
         #home h1 {
             font-family: "Tenor Sans", sans-serif;
             font-size: 48px;
@@ -103,21 +123,18 @@
             margin-bottom: 40px;
             color: #000000;
         }
-        
-        /* Columnas de texto en Home */
+
+        /* COLUMNAS HOME */
         .features-container {
             display: flex;
             justify-content: center;
             gap: 40px;
             margin-top: 60px;
             margin-bottom: 60px;
-            flex-wrap: wrap;
             text-align: left;
         }
         .feature-col {
             flex: 1;
-            min-width: 250px;
-            max-width: 300px;
         }
         .feature-col h3 {
             font-family: "Tenor Sans", sans-serif;
@@ -132,7 +149,7 @@
             color: #333;
         }
 
-        /* BUTTONS */
+        /* BOTONES */
         .btn {
             display: inline-block;
             padding: 14px 28px;
@@ -151,15 +168,16 @@
             color: #f8f5f2;
             transform: translateY(-2px);
         }
-        
-        /* MISSION BUTTON (Punto 2) */
         .mission-btn {
-            margin-top: 40px;     /* Más espacio arriba */
-            font-size: 22px;      /* Letra más grande */
-            padding: 20px 40px;   /* Botón más grande */
+            margin-top: 40px;
+            font-size: 22px;
+            padding: 20px 40px;
+            white-space: normal; /* Permite que el texto baje de línea si es necesario */
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
-        /* VIDEO BLOCK */
+        /* VIDEO */
         #mymission iframe {
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -178,10 +196,7 @@
             border-radius: 10px;
             border: 1px solid #c0c0c0;
         }
-        #contact label {
-            font-family: "Inter", sans-serif;
-            font-size: 16px;
-        }
+        #contact label { font-family: "Inter", sans-serif; font-size: 16px; }
         #contact input, #contact textarea {
             padding: 12px;
             border: 1px solid #c0c0c0;
@@ -198,50 +213,122 @@
             cursor: pointer;
             border-radius: 4px;
             transition: 0.3s;
+            font-size: 18px;
         }
-        #contact button:hover {
-            background: #000;
-        }
+        #contact button:hover { background: #000; }
 
-        /* PRIVACY SECTION */
-        #privacy {
-            max-width: 700px;
-            margin: 40px auto;
-            text-align: left;
-            padding: 20px;
-        }
-        #privacy h2, #privacy h3 {
-            font-family: Tenor Sans;
-        }
+        /* PRIVACY */
+        #privacy { max-width: 700px; margin: 40px auto; text-align: left; padding: 20px; }
+        #privacy h2, #privacy h3 { font-family: Tenor Sans; }
 
-        /* FOOTER (Punto 3) */
+        /* FOOTER */
         footer {
-            margin-top: auto; /* Empuja el footer al fondo */
+            margin-top: auto;
             padding: 20px 40px;
             font-family: Inter;
-            background-color: #eceae6; /* Ligero fondo para distinguir */
+            background-color: #eceae6;
             display: flex;
-            justify-content: space-between; /* Distribuye: Izq - Centro - Der */
+            justify-content: space-between;
             align-items: center;
             font-size: 14px;
         }
-        footer a {
-            color: #573b2f;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        footer p {
-            margin: 0;
+        footer a { color: #573b2f; text-decoration: none; font-weight: bold; }
+        footer p { margin: 0; }
+
+        /* --- VERSIÓN MÓVIL (MEDIA QUERY) --- */
+        @media (max-width: 768px) {
+            
+            /* Header Flex: Logo Izq, Menu Der */
+            header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 20px;
+            }
+            header img {
+                margin: 0; /* Quita el centrado */
+                width: 120px; /* Logo más pequeño para que quepa */
+            }
+
+            /* Mostrar botón hamburguesa */
+            .hamburger {
+                display: block;
+                position: static; /* Ya no absoluto, usa flex */
+            }
+
+            /* Nav: Escondido por defecto */
+            nav {
+                display: none; /* Se oculta */
+                position: absolute;
+                top: 80px; /* Debajo del header */
+                left: 0;
+                width: 100%;
+                background: #f8f5f2;
+                border-bottom: 1px solid #ccc;
+                z-index: 1000;
+                padding-bottom: 20px;
+            }
+            /* Clase para mostrar el menú cuando se hace clic */
+            nav.nav-active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column; /* Lista vertical */
+            }
+            nav li {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 20px;
+            }
+
+            /* Home Ajustes */
+            #home h1 { font-size: 36px; line-height: 1.2; }
+            #home p.subtitle { font-size: 18px; }
+
+            /* Columnas apiladas */
+            .features-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            /* Botones más grandes */
+            .btn {
+                width: 100%; /* Botón ancho completo */
+                box-sizing: border-box;
+                padding: 18px;
+            }
+            
+            /* Mission */
+            .mission-btn {
+                font-size: 20px;
+                padding: 20px;
+            }
+
+            /* Contacto */
+            #contact form { padding: 20px; }
+            #contact input, #contact textarea, #contact button {
+                font-size: 18px; /* Texto input más grande */
+                padding: 15px;
+            }
+
+            /* Footer Apilado */
+            footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logodefinitivo.png" alt="Logo AIcquisition" width="200" height="200">
+        <img src="logodefinitivo.png" alt="Logo AIcquisition">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
     </header>
 
-    <nav>
+    <nav id="mainNav">
         <ul>
             <li><a href="#" data-target="#home">Home</a></li>
             <li><a href="#" data-target="#mymission">My Mission</a></li>
@@ -284,13 +371,9 @@
         <section id="contact">
             <h2 style="font-family: 'Tenor Sans'; margin-bottom: 30px;">Start a Conversation</h2>
             
-            <form action="https://formsubmit.co/catherined@aicquisition.com" method="POST">
-                
+            <form action="https://formsubmit.co/catherine@aicquisition.com" method="POST">
                 <input type="text" name="_honey" style="display:none">
-
                 <input type="hidden" name="_captcha" value="false">
-
-                <input type="hidden" name="_next" value="https://formsubmit.co/el/success"> 
                 <label>Name:</label>
                 <input type="text" name="name" required>
 
@@ -306,61 +389,43 @@
 
         <section id="privacy">
             <h2>Privacy Policy</h2>
-            <p>
-                At AIcquisition, your privacy is important to us. This website does not use cookies,
-                does not track visitors, and does not collect personal information automatically.
-            </p>
+            <p>At AIcquisition, your privacy is important to us. This website does not use cookies, does not track visitors, and does not collect personal information automatically.</p>
             <h3>Information You Voluntarily Provide</h3>
-            <p>
-                If you choose to contact us through the form on this website, the information you
-                submit (your name, email address, and message) will be processed securely through 
-                FormSubmit.co and sent directly to our email inbox. We do not store, sell, or share
-                your information with anyone.
-            </p>
-            <h3>Third-Party Services</h3>
-            <p>
-                Our website may embed content from third-party platforms such as Vimeo. These services
-                may collect technical information such as your IP address in accordance with their own
-                privacy policies.
-            </p>
+            <p>If you choose to contact us through the form on this website, the information you submit will be processed securely. We do not store, sell, or share your information.</p>
             <h3>Your Rights</h3>
-            <p>
-                If you have submitted your information and wish to have it deleted or wish to request
-                details of the information we have received, you can contact us at:
-                <a href="mailto:catherine@aicquisition.com">catherine@aicquisition.com</a>.
-            </p>
-            <h3>Updates</h3>
-            <p>
-                This Privacy Policy may be updated occasionally. Any changes will be posted on this page.
-            </p>
+            <p>If you have submitted your information and wish to have it deleted, contact us at: <a href="mailto:catherine@aicquisition.com">catherine@aicquisition.com</a>.</p>
         </section>
     </main>
 
     <footer>
         <a href="https://www.linkedin.com/in/cathgairard/" target="_blank">Connect on LinkedIn</a>
-        
         <p>© 2025 AIcquisition. All rights reserved.</p>
-        
         <a href="#" data-target="#privacy">Privacy Policy</a>
     </footer>
 
 <script>
-// Ocultar todas las secciones y mostrar solo la seleccionada
+// Toggle Menu Hamburguesa
+function toggleMenu() {
+    const nav = document.getElementById("mainNav");
+    nav.classList.toggle("nav-active");
+}
+
+// Navegación SPA
 function showSection(sectionID) {
     document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
     document.querySelector(sectionID).classList.add("active");
 }
 
-// Listener modificado para escuchar clicks en cualquier elemento con data-target
 document.addEventListener('click', function(e) {
-    // Verificamos si el click fue en un elemento con data-target
     const targetLink = e.target.closest('a[data-target]');
-    
     if (targetLink) {
         e.preventDefault();
         const sectionID = targetLink.getAttribute("data-target");
         showSection(sectionID);
         window.scrollTo(0,0);
+        
+        // Cerrar menú móvil automáticamente al hacer click
+        document.getElementById("mainNav").classList.remove("nav-active");
     }
 });
 </script>
