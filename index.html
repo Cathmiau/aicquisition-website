@@ -1,252 +1,342 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-    section {
-        display: none;
-    }
-    section.active {
-        display: block;
-    }
-</style>
     <meta charset="UTF-8">
     <title>AIcquisition</title>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 
-    body {
-        background: #f8f5f2;
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        color: #000000;
-        text-align: center;
-    }
+        /* ESTRUCTURA GENERAL (Para el Footer pegado al fondo - Punto 3) */
+        body {
+            background: #f8f5f2;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: #000000;
+            text-align: center;
+            /* Flexbox vertical para mantener el footer abajo */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+        }
 
-    header img {
-        display: block;
-        margin: 20px auto;
-    }
+        /* Contenedor principal para empujar el footer */
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
 
-    /* NAV */
-    nav {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-    nav ul {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        gap: 0;
-        border: none;
-    }
-    nav li {
-        padding: 10px 25px;
-        font-family: "Tenor Sans", sans-serif;
-        font-size: 18px;
-        font-weight: bold;
-        color: #573b2f;
-        cursor: pointer;
-        border-right: 2px solid #000;
-    }
-    nav li:last-child {
-        border-right: none;
-    }
-    nav a {
-        text-decoration: none;
-        color: #573b2f;
-        transition: 0.3s;
-    }
-    nav a:hover {
-        background-color: #573b2f;
-        color: #f8f5f2;
-        padding: 10px 20px;
-        border-radius: 4px;
-    }
-    nav a:active {
-        transform: scale(0.96);
-    }
+        header img {
+            display: block;
+            margin: 20px auto;
+        }
 
-    /* SLOGAN */
-    #home h1 {
-        font-family: "Tenor Sans", sans-serif;
-        font-size: 48px;
-        font-weight: 700;
-        margin-top: 40px;
-        margin-bottom: 10px;
-        color: #000000;
-    }
-    #home p {
-        font-family: "Libre Baskerville", serif;
-        font-size: 20px;
-        margin-bottom: 40px;
-        color: #000000;
-    }
+        /* SECCIONES (Lógica de navegación) */
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-    /* BUTTONS */
-    .btn {
-        display: inline-block;
-        padding: 14px 28px;
-        background: #573b2f;
-        color: #f8f5f2;
-        font-family: "Tenor Sans", sans-serif;
-        letter-spacing: 0.5px;
-        text-decoration: none;
-        border-radius: 4px;
-        font-size: 18px;
-        cursor: pointer;
-        transition: 0.3s ease;
-    }
-    .btn:hover {
-        background: #000;
-        color: #f8f5f2;
-        transform: translateY(-2px);
-    }
-    .btn:active {
-        transform: scale(0.96);
-    }
+        /* NAV */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 0;
+            border: none;
+        }
+        nav li {
+            padding: 10px 25px;
+            font-family: "Tenor Sans", sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #573b2f;
+            cursor: pointer;
+            border-right: 2px solid #000;
+        }
+        nav li:last-child {
+            border-right: none;
+        }
+        nav a {
+            text-decoration: none;
+            color: #573b2f;
+            transition: 0.3s;
+            display: block; /* Mejora el click */
+        }
+        nav a:hover {
+            background-color: #573b2f;
+            color: #f8f5f2;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
 
-    /* VIDEO BLOCK */
-    #mymission iframe {
-        border-radius: 8px;
-    }
+        /* HOME STYLES (Punto 4) */
+        #home h1 {
+            font-family: "Tenor Sans", sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+        #home p.subtitle {
+            font-family: "Libre Baskerville", serif;
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #000000;
+        }
+        
+        /* Columnas de texto en Home */
+        .features-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+        .feature-col {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+        .feature-col h3 {
+            font-family: "Tenor Sans", sans-serif;
+            font-size: 22px;
+            border-bottom: 1px solid #573b2f;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .feature-col p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
 
-    /* CONTACT FORM */
-    #contact form {
-        max-width: 500px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        text-align: left;
-        background: #ffffffdd;
-        padding: 30px;
-        border-radius: 10px;
-        border: 1px solid #c0c0c0;
-    }
-    #contact label {
-        font-family: "Inter", sans-serif;
-        font-size: 16px;
-    }
-    #contact input, #contact textarea {
-        padding: 12px;
-        border: 1px solid #c0c0c0;
-        border-radius: 6px;
-        font-size: 16px;
-        font-family: Inter;
-    }
-    #contact button {
-        padding: 12px;
-        background: #573b2f;
-        border: none;
-        color: #f8f5f2;
-        font-family: Tenor Sans;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: 0.3s;
-    }
-    #contact button:hover {
-        background: #000;
-    }
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #573b2f;
+            color: #f8f5f2;
+            font-family: "Tenor Sans", sans-serif;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .btn:hover {
+            background: #000;
+            color: #f8f5f2;
+            transform: translateY(-2px);
+        }
+        
+        /* MISSION BUTTON (Punto 2) */
+        .mission-btn {
+            margin-top: 40px;     /* Más espacio arriba */
+            font-size: 22px;      /* Letra más grande */
+            padding: 20px 40px;   /* Botón más grande */
+        }
 
-    /* PRIVACY SECTION */
-    #privacy {
-        max-width: 700px;
-        margin: 40px auto;
-        text-align: left;
-        padding: 20px;
-    }
-    #privacy h2 {
-        font-family: Tenor Sans;
-    }
-    #privacy h3 {
-        font-family: Tenor Sans;
-    }
+        /* VIDEO BLOCK */
+        #mymission iframe {
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
 
-    /* FOOTER */
-    footer {
-        margin-top: 40px;
-        padding: 20px;
-        font-family: Inter;
-    }
-    footer a {
-        color: #573b2f;
-        text-decoration: none;
-        font-weight: bold;
-    }
-</style>
+        /* CONTACT FORM */
+        #contact form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+            background: #ffffffdd;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #c0c0c0;
+        }
+        #contact label {
+            font-family: "Inter", sans-serif;
+            font-size: 16px;
+        }
+        #contact input, #contact textarea {
+            padding: 12px;
+            border: 1px solid #c0c0c0;
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: Inter;
+        }
+        #contact button {
+            padding: 12px;
+            background: #573b2f;
+            border: none;
+            color: #f8f5f2;
+            font-family: Tenor Sans;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        #contact button:hover {
+            background: #000;
+        }
 
+        /* PRIVACY SECTION */
+        #privacy {
+            max-width: 700px;
+            margin: 40px auto;
+            text-align: left;
+            padding: 20px;
+        }
+        #privacy h2, #privacy h3 {
+            font-family: Tenor Sans;
+        }
+
+        /* FOOTER (Punto 3) */
+        footer {
+            margin-top: auto; /* Empuja el footer al fondo */
+            padding: 20px 40px;
+            font-family: Inter;
+            background-color: #eceae6; /* Ligero fondo para distinguir */
+            display: flex;
+            justify-content: space-between; /* Distribuye: Izq - Centro - Der */
+            align-items: center;
+            font-size: 14px;
+        }
+        footer a {
+            color: #573b2f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-    <header><img src="logodefinitivo.png" alt="Logo AIcquisition" width="200" height="200"></header>
+
+    <header>
+        <img src="logodefinitivo.png" alt="Logo AIcquisition" width="200" height="200">
+    </header>
+
     <nav>
         <ul>
-            <li><a href="#home" target="_self">Home</a></li>
-            <li><a href="#mymission" target="_self">My Mission</a></li>
-            <li><a href="#contact" target="_self">Contact</a></li>
+            <li><a href="#" data-target="#home">Home</a></li>
+            <li><a href="#" data-target="#mymission">My Mission</a></li>
+            <li><a href="#" data-target="#contact">Contact</a></li>
         </ul>
     </nav>
 
+    <main>
         <section id="home" class="active">
             <h1>Your Legacy Deserves the Right Successor</h1>
-            <p>Modernizing established home services businesses and using smart technology to amplify your team's expertise</p>
+            <p class="subtitle">Modernizing established home services businesses and using smart technology to amplify your team's expertise</p>
+            
             <a class="btn" data-target="#mymission">Learn More</a>
+
+            <div class="features-container">
+                <div class="feature-col">
+                    <h3>Operations Overload</h3>
+                    <p>Great businesses are drowning in repetitive tasks. Clipboards, manual tracking, and endless admin steal time from what your team does best: serving customers. We fix the foundation so your business runs smoothly.</p>
+                </div>
+                <div class="feature-col">
+                    <h3>Human-Centric AI</h3>
+                    <p>We believe AI doesn't replace humans—it frees them. By implementing simple systems, we turn hours of paperwork into minutes of automated updates, allowing your staff to focus on craftsmanship and relationships.</p>
+                </div>
+                <div class="feature-col">
+                    <h3>Preserving Value</h3>
+                    <p>I am not here to strip assets. I bring the resources, financial backing, and specialized team to ensure the legacy and community pillar you've built continues to thrive long after you retire.</p>
+                </div>
+            </div>
         </section>
+
         <section id="mymission">
-            <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139884283?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="video 001"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-            <a class="btn" data-target="#contact">Curious about working together? Let's talk!</a>
+            <div style="padding:56.25% 0 0 0;position:relative;">
+                <iframe src="https://player.vimeo.com/video/1139884283?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="video 001"></iframe>
+            </div>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+            
+            <a class="btn mission-btn" data-target="#contact">Curious about working together? Let's talk!</a>
         </section>
-        <section id="contact"><form action="https://formsubmit.co/cathgairard@gmail.com" method="POST">
-    <label>Name:</label>
-    <input type="text" name="name" required>
 
-    <label>Email:</label>
-    <input type="email" name="email" required>
+        <section id="contact">
+            <h2 style="font-family: 'Tenor Sans'; margin-bottom: 30px;">Start a Conversation</h2>
+            <form action="https://formsubmit.co/cathgairard@gmail.com" method="POST">
+                <label>Name:</label>
+                <input type="text" name="name" required>
 
-    <label>Your message:</label>
-    <textarea name="message" required></textarea>
+                <label>Email:</label>
+                <input type="email" name="email" required>
 
-    <button type="submit">Send Message</button>
-</form>
-</section>
+                <label>Your message:</label>
+                <textarea name="message" required rows="5"></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+
+        <section id="privacy">
+            <h2>Privacy Policy</h2>
+            <p>
+                At AIcquisition, your privacy is important to us. This website does not use cookies,
+                does not track visitors, and does not collect personal information automatically.
+            </p>
+            <h3>Information You Voluntarily Provide</h3>
+            <p>
+                If you choose to contact us through the form on this website, the information you
+                submit (your name, email address, and message) will be processed securely through 
+                FormSubmit.co and sent directly to our email inbox. We do not store, sell, or share
+                your information with anyone.
+            </p>
+            <h3>Third-Party Services</h3>
+            <p>
+                Our website may embed content from third-party platforms such as Vimeo. These services
+                may collect technical information such as your IP address in accordance with their own
+                privacy policies.
+            </p>
+            <h3>Your Rights</h3>
+            <p>
+                If you have submitted your information and wish to have it deleted or wish to request
+                details of the information we have received, you can contact us at:
+                <a href="mailto:cathgairard@gmail.com">cathgairard@gmail.com</a>.
+            </p>
+            <h3>Updates</h3>
+            <p>
+                This Privacy Policy may be updated occasionally. Any changes will be posted on this page.
+            </p>
+        </section>
+    </main>
+
     <footer>
-    <p>© 2025 AIcquisition. All rights reserved.</p>
-    <a href="https://www.linkedin.com/in/cathgairard/" target="_blank">Connect on LinkedIn</a>
-    <p><a href="#privacy">Privacy Policy</a></p>
-</footer>
-    <section id="privacy"><h2>Privacy Policy</h2>
-    <p>
-        At AIcquisition, your privacy is important to us. This website does not use cookies,
-        does not track visitors, and does not collect personal information automatically.
-    </p>
+        <a href="https://www.linkedin.com/in/cathgairard/" target="_blank">Connect on LinkedIn</a>
+        
+        <p>© 2025 AIcquisition. All rights reserved.</p>
+        
+        <a href="#" data-target="#privacy">Privacy Policy</a>
+    </footer>
 
-    <h3>Information You Voluntarily Provide</h3>
-    <p>
-        If you choose to contact us through the form on this website, the information you
-        submit (your name, email address, and message) will be processed securely through 
-        FormSubmit.co and sent directly to our email inbox. We do not store, sell, or share
-        your information with anyone.
-    </p>
-
-    <h3>Third-Party Services</h3>
-    <p>
-        Our website may embed content from third-party platforms such as Vimeo. These services
-        may collect technical information such as your IP address in accordance with their own
-        privacy policies.
-    </p>
-
-    <h3>Your Rights</h3>
-    <p>
-        If you have submitted your information and wish to have it deleted or wish to request
-        details of the information we have received, you can contact us at:
-        <a href="mailto:cathgairard@gmail.com">cathgairard@gmail.com</a>.
-    </p>
-
-    <h3>Updates</h3>
-    <p>
-        This Privacy Policy may be updated occasionally. Any changes will be posted on this page.
-    </p></section>
 <script>
 // Ocultar todas las secciones y mostrar solo la seleccionada
 function showSection(sectionID) {
@@ -254,25 +344,19 @@ function showSection(sectionID) {
     document.querySelector(sectionID).classList.add("active");
 }
 
-// Listener para links del menú
-document.querySelectorAll('a[data-target]').forEach(link => {
-    link.addEventListener("click", function(e) {
+// Listener modificado para escuchar clicks en cualquier elemento con data-target
+document.addEventListener('click', function(e) {
+    // Verificamos si el click fue en un elemento con data-target
+    const targetLink = e.target.closest('a[data-target]');
+    
+    if (targetLink) {
         e.preventDefault();
-        const sectionID = this.getAttribute("data-target");
+        const sectionID = targetLink.getAttribute("data-target");
         showSection(sectionID);
         window.scrollTo(0,0);
-    });
+    }
 });
-
-
-// LinkedIn sigue abriendo en nueva pestaña
-const linkedinLink = document.querySelector('a[href*="linkedin.com"]');
-if (linkedinLink) {
-    linkedinLink.setAttribute("target", "_blank");
-    linkedinLink.setAttribute("rel", "noopener noreferrer");
-}
 </script>
-
 
 </body>
 </html>
